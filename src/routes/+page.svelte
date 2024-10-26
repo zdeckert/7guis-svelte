@@ -28,6 +28,27 @@
 				: `You booked a round trip flight departing on ${departureDate} and returning ${departureDate}`;
 		alert(msg);
 	}
+
+	// Timer
+	let duration = $state(10);
+	let elapsed = $state(0);
+	function reset() {
+		elapsed = 0;
+	}
+	let intervalId;
+	intervalId = setInterval(() => {
+		if (elapsed < duration) elapsed += 0.1;
+	}, 100);
+
+	// function timerStart() {
+	// 	if (!intervalId) intervalId = setInterval(() => (elapsed += 0.1), 100);
+	// }
+
+	function timerReset() {
+		elapsed = 0;
+		// clearInterval(intervalId!);
+		// intervalId = null;
+	}
 </script>
 
 <h1>Svelte 7 guis</h1>
@@ -86,8 +107,18 @@
 	<button type="submit">Book</button>
 </form>
 
+<form id="timer">
+	<h2>Timer</h2>
+	<label for="timer_gauge">Elapsed: {elapsed.toFixed(1)}s</label>
+	<progress id="timer_gauge" value={elapsed} max={duration}></progress>
+	<label for="timer_slider">Duration: {duration}</label>
+	<input id="timer_slider" type="range" step={0.1} max={15} bind:value={duration} />
+	<button id="timer_reset" onclick={timerReset}>reset</button>
+</form>
+
 <style>
-	#flight_booker {
+	#flight_booker,
+	#timer {
 		display: flex;
 		flex-direction: column;
 		width: fit-content;
