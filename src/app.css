@@ -1,0 +1,14 @@
+.fit {
+    width: fit-content;
+}
+
+.flex {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.flex-col {
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
+}
